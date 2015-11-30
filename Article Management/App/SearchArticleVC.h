@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  SearchArticleVC.h
 //  Article Management
 //
-//  Created by Lun Sovathana on 11/27/15.
+//  Created by Lun Sovathana on 11/29/15.
 //  Copyright © 2015 Lun Sovathana. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface SearchArticleVC : UIViewController
 
 @end
-
