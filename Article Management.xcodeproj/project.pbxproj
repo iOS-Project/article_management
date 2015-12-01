@@ -28,6 +28,8 @@
 		D5CB7BC71C088899009885DD /* Article_ManagementUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CB7BC61C088899009885DD /* Article_ManagementUITests.m */; };
 		D5D372C91C0AB7DB00ECC5EE /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D372C81C0AB7DB00ECC5EE /* back.png */; };
 		D5D372D21C0ABA3600ECC5EE /* SearchArticleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D372D11C0ABA3600ECC5EE /* SearchArticleVC.m */; };
+		D5E55E951C0D32370020A86A /* AddArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E55E941C0D32370020A86A /* AddArticle.m */; settings = {ASSET_TAGS = (); }; };
+		D5E55E991C0D35650020A86A /* LSTString.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E55E981C0D35650020A86A /* LSTString.m */; settings = {ASSET_TAGS = (); }; };
 		D5F277051C0BDFA200CCF417 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = D5F277041C0BDFA200CCF417 /* Article.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,10 @@
 		D5D372C81C0AB7DB00ECC5EE /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		D5D372D01C0ABA3600ECC5EE /* SearchArticleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchArticleVC.h; path = App/SearchArticleVC.h; sourceTree = "<group>"; };
 		D5D372D11C0ABA3600ECC5EE /* SearchArticleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchArticleVC.m; path = App/SearchArticleVC.m; sourceTree = "<group>"; };
+		D5E55E931C0D32370020A86A /* AddArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddArticle.h; path = App/AddArticle.h; sourceTree = "<group>"; };
+		D5E55E941C0D32370020A86A /* AddArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddArticle.m; path = App/AddArticle.m; sourceTree = "<group>"; };
+		D5E55E971C0D35650020A86A /* LSTString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LSTString.h; path = Utils/LSTString.h; sourceTree = "<group>"; };
+		D5E55E981C0D35650020A86A /* LSTString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LSTString.m; path = Utils/LSTString.m; sourceTree = "<group>"; };
 		D5F277031C0BDFA200CCF417 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Article.h; path = Model/Article.h; sourceTree = "<group>"; };
 		D5F277041C0BDFA200CCF417 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Article.m; path = Model/Article.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +176,8 @@
 				D5C53B511C0B37BF001C14BA /* MoreVC.m */,
 				D5C53B531C0B3F58001C14BA /* DetailArticleVC.h */,
 				D5C53B541C0B3F58001C14BA /* DetailArticleVC.m */,
+				D5E55E931C0D32370020A86A /* AddArticle.h */,
+				D5E55E941C0D32370020A86A /* AddArticle.m */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 		D5CB7BA01C088899009885DD /* Article Management */ = {
 			isa = PBXGroup;
 			children = (
+				D5E55E961C0D349B0020A86A /* Utils */,
 				D5F277021C0BDF8400CCF417 /* Model */,
 				D519F7A21C09B97800860DFC /* App */,
 				D519F7A11C09B95700860DFC /* Default */,
@@ -231,6 +240,15 @@
 				D5CB7BC81C088899009885DD /* Info.plist */,
 			);
 			path = "Article ManagementUITests";
+			sourceTree = "<group>";
+		};
+		D5E55E961C0D349B0020A86A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D5E55E971C0D35650020A86A /* LSTString.h */,
+				D5E55E981C0D35650020A86A /* LSTString.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		D5F277021C0BDF8400CCF417 /* Model */ = {
@@ -383,12 +401,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5E55E951C0D32370020A86A /* AddArticle.m in Sources */,
 				D519F7A51C09C14B00860DFC /* ConnectionManager.m in Sources */,
 				D5D372D21C0ABA3600ECC5EE /* SearchArticleVC.m in Sources */,
 				D5F277051C0BDFA200CCF417 /* Article.m in Sources */,
 				D5BD7D211C09ED540049767D /* HomeVC.m in Sources */,
 				D5BD7D241C09F30F0049767D /* ArticleCell.m in Sources */,
 				D5C53B551C0B3F58001C14BA /* DetailArticleVC.m in Sources */,
+				D5E55E991C0D35650020A86A /* LSTString.m in Sources */,
 				D5CB7BA61C088899009885DD /* AppDelegate.m in Sources */,
 				D5CB7BA31C088899009885DD /* main.m in Sources */,
 				D5C53B521C0B37BF001C14BA /* MoreVC.m in Sources */,

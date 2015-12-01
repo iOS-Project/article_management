@@ -55,6 +55,124 @@
             </objects>
             <point key="canvasLocation" x="888" y="873"/>
         </scene>
+        <!--Add Article-->
+        <scene sceneID="ny3-Zt-gDb">
+            <objects>
+                <viewController id="ezQ-X0-V2D" customClass="AddArticle" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3BT-vh-JY9"/>
+                        <viewControllerLayoutGuide type="bottom" id="XW0-XN-lFE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ke9-uQ-wKy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tre-YR-ueR">
+                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
+                                <subviews>
+                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vb9-7I-u1y">
+                                        <rect key="frame" x="0.0" y="25" width="328" height="44"/>
+                                        <animations/>
+                                        <color key="barTintColor" red="0.086274509799999996" green="0.56470588239999997" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <textAttributes key="titleTextAttributes">
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </textAttributes>
+                                        <items>
+                                            <navigationItem title="Add Article" id="ony-5h-vfL">
+                                                <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="A6R-lu-9z7">
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="cancelAction:" destination="ezQ-X0-V2D" id="Lw0-M8-fSk"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" systemItem="save" id="sdz-Zb-Udh">
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="saveAction:" destination="ezQ-X0-V2D" id="iKR-mc-06w"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vim-tj-86v">
+                                        <rect key="frame" x="0.0" y="69" width="328" height="499"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqg-KV-mIy">
+                                                <rect key="frame" x="8" y="8" width="312" height="483"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2do-cq-yVi">
+                                                        <rect key="frame" x="8" y="8" width="296" height="30"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O1W-H0-zCa">
+                                                        <rect key="frame" x="8" y="46" width="296" height="273"/>
+                                                        <animations/>
+                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D9S-1J-uIP">
+                                                        <rect key="frame" x="8" y="356" width="296" height="119"/>
+                                                        <animations/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Browse Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0L3-DQ-FHf">
+                                                        <rect key="frame" x="8" y="327" width="296" height="21"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <animations/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <animations/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="cqg-KV-mIy" firstAttribute="top" secondItem="vim-tj-86v" secondAttribute="top" constant="8" id="2M4-xv-HpM"/>
+                                            <constraint firstAttribute="trailing" secondItem="cqg-KV-mIy" secondAttribute="trailing" constant="8" id="ZH0-K3-txd"/>
+                                            <constraint firstItem="cqg-KV-mIy" firstAttribute="leading" secondItem="vim-tj-86v" secondAttribute="leading" constant="8" id="dPA-Dr-ALX"/>
+                                            <constraint firstAttribute="bottom" secondItem="cqg-KV-mIy" secondAttribute="bottom" constant="8" id="e2B-Up-uwb"/>
+                                            <constraint firstItem="cqg-KV-mIy" firstAttribute="centerX" secondItem="vim-tj-86v" secondAttribute="centerX" id="qO1-Pk-bu0"/>
+                                            <constraint firstItem="cqg-KV-mIy" firstAttribute="centerY" secondItem="vim-tj-86v" secondAttribute="centerY" id="w0G-c0-iwV"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.56470588239999997" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="vim-tj-86v" firstAttribute="top" secondItem="vb9-7I-u1y" secondAttribute="bottom" id="0Ce-sd-XEj"/>
+                                    <constraint firstAttribute="bottom" secondItem="vim-tj-86v" secondAttribute="bottom" id="K9w-aQ-YCN"/>
+                                    <constraint firstItem="vb9-7I-u1y" firstAttribute="leading" secondItem="vim-tj-86v" secondAttribute="leading" id="ab5-8u-utd"/>
+                                    <constraint firstItem="vb9-7I-u1y" firstAttribute="trailing" secondItem="vim-tj-86v" secondAttribute="trailing" id="gRg-LH-Nqv"/>
+                                    <constraint firstAttribute="trailing" secondItem="vim-tj-86v" secondAttribute="trailing" id="lbg-eh-2Rx"/>
+                                    <constraint firstItem="vb9-7I-u1y" firstAttribute="top" secondItem="Tre-YR-ueR" secondAttribute="top" constant="25" id="uVX-Dc-sXM"/>
+                                    <constraint firstItem="vim-tj-86v" firstAttribute="leading" secondItem="Tre-YR-ueR" secondAttribute="leading" id="xGp-VH-Jxk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Tre-YR-ueR" firstAttribute="leading" secondItem="ke9-uQ-wKy" secondAttribute="leadingMargin" constant="-20" id="0v1-bU-ffW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tre-YR-ueR" secondAttribute="trailing" constant="-20" id="HFP-KN-BhG"/>
+                            <constraint firstItem="Tre-YR-ueR" firstAttribute="top" secondItem="ke9-uQ-wKy" secondAttribute="topMargin" id="ciq-vF-i61"/>
+                            <constraint firstItem="XW0-XN-lFE" firstAttribute="top" secondItem="Tre-YR-ueR" secondAttribute="bottom" id="u7d-oG-avc"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="descriptionTV" destination="O1W-H0-zCa" id="K5Y-cl-pJT"/>
+                        <outlet property="titleTF" destination="2do-cq-yVi" id="ITc-FQ-IS0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zOL-Pw-kp3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="627" y="-582"/>
+        </scene>
         <!--Home-->
         <scene sceneID="2SE-2t-Gcz">
             <objects>
@@ -185,6 +303,7 @@
                         <outlet property="tableArticle" destination="X3i-mu-YzO" id="kTh-10-PDT"/>
                         <segue destination="zXJ-eM-6OX" kind="show" identifier="searchSegue" id="9xZ-2R-T5o"/>
                         <segue destination="g6J-2M-2Dv" kind="show" identifier="detailArticleSegue" id="ECW-AN-4Nq"/>
+                        <segue destination="ezQ-X0-V2D" kind="show" identifier="addArticleSegue" id="uw9-8k-j0j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FLM-Ya-hjk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -327,7 +446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OYH-e4-JfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="723" y="-591"/>
+            <point key="canvasLocation" x="1321" y="-596"/>
         </scene>
         <!--Search-->
         <scene sceneID="1SE-aq-o6r">

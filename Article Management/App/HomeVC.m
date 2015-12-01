@@ -38,6 +38,7 @@
     
     // hide add button
     self.addButton.enabled = false;
+    self.addButton.tintColor = [UIColor colorWithRed:(22/255.0) green:(144/255.0) blue:(127/255.0) alpha:1];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -68,16 +69,27 @@
         [data insertObject:article atIndex:0];
         //NSLog(@"count: %d", (int)[data count]);
     }
+    
+    // if no record return
+    if ([data count] == 0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Message" message:@"No article found...['" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            return;
+        }];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^(void){
         [self.indicator stopAnimating];
         self.addButton.enabled = YES;
+        self.addButton.tintColor = [UIColor whiteColor];
         [self.tableArticle reloadData];
     });
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == ((NSIndexPath*)[[self.tableArticle indexPathsForVisibleRows] lastObject]).row) {
-        //[self.tableArticle reloadData];
         [self.indicator stopAnimating];
     }
 }
@@ -117,5 +129,6 @@
     [self performSegueWithIdentifier:@"searchSegue" sender:nil];
 }
 - (IBAction)addArticle:(id)sender {
+    [self performSegueWithIdentifier:@"addArticleSegue" sender:nil];
 }
 @end
