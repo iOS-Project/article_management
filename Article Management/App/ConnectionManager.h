@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ConnectionManager : NSObject
+@protocol ConnectionManagerDelegate;
+
+@interface ConnectionManager : NSObject<NSURLSessionDelegate, NSURLSessionDataDelegate>
+
+@property(nonatomic, weak)id<ConnectionManagerDelegate>delegate;
+
+-(void)requestData:(NSDictionary *)dataDictionary withKey:(NSString *)key;
+
+@end
+
+@protocol ConnectionManagerDelegate <NSObject>
+
+@required
+-(void)responseData:(NSDictionary *)dataDictionary;
 
 @end

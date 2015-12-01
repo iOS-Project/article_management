@@ -10,4 +10,18 @@
 
 @implementation Article
 
+-(id)initWithObject:(NSArray *)array{
+    self = [super init];
+    if (self != nil) {
+        self.artID = [array valueForKey:@"id"];
+        self.artTitle = [array valueForKey:@"title"];
+        self.artDescription = [array valueForKey:@"description"];
+        self.artPublishDate = [array valueForKey:@"publishDate"];
+        self.artImageURL = [array valueForKey:@"image"];
+        self.userID = [array valueForKey:@"userId"];
+        self.enable = [array valueForKey:@"enable"];
+    }
+    return self;
+}
+
 @end

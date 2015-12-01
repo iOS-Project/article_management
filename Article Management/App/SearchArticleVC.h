@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchArticleVC : UIViewController
+- (IBAction)back:(id)sender;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchControll;
+@property (weak, nonatomic) IBOutlet UITableView *tableArticle;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *searchIndicator;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end

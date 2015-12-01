@@ -8,7 +8,9 @@
 
 #import "MoreVC.h"
 
-@interface MoreVC ()
+@interface MoreVC ()<UITableViewDataSource, UITableViewDelegate>{
+    
+}
 
 @end
 
@@ -16,12 +18,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 1) {
+        return 3;
+    }else if (section == 2){
+        return 1;
+    }
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"" forIndexPath:indexPath];
+    return cell;
+}
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return @"Manage Article";
+    }else{
+        return @"User";
+    }
+}
+
+//fixed font style. use custom view (UILabel) if you want something different
+- (nullable NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return nil;
 }
 
 /*

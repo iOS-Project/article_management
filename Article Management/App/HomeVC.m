@@ -7,8 +7,15 @@
 //
 
 #import "HomeVC.h"
+#import "ConnectionManager.h"
+#import "ArticleCell.h"
+#import "DetailArticleVC.h"
+#import "Article.h"
 
-@interface HomeVC ()
+@interface HomeVC ()<ConnectionManagerDelegate, UITableViewDelegate, UITableViewDataSource>{
+    NSMutableArray<Article *>*data;
+    ConnectionManager *cm;
+}
 
 @end
 
@@ -16,7 +23,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // set delegate
+    self.tableArticle.delegate = self;
+    self.tableArticle.dataSource = self;
+    
+    cm = [[ConnectionManager alloc] init];
+    cm.delegate = self;
+    
+    // add indicator to view
+    [self.subView addSubview:self.indicator];
+    // start animate
+    [self.indicator startAnimating];
+    
+    // hide add button
+    self.addButton.enabled = false;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    //[self.tableArticle reloadData];
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +50,72 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+-(void)loadData{
+    NSDictionary *reqData = [[NSDictionary alloc] initWithObjects:@[@"10", @"1"] forKeys:@[@"row", @"pageCount"]];
+    
+    
+        [cm requestData:reqData withKey:@"/api/article/hrd_r001"];
+   
+}
+
+-(void)responseData:(NSDictionary *)dataDictionary{
+
+    data = [[NSMutableArray alloc] init];
+    // add data to object
+    for (NSArray *arr in [dataDictionary objectForKey:@"RES_DATA"]) {
+        Article *article = [[Article alloc] initWithObject:arr];
+        // add article to collection
+        [data insertObject:article atIndex:0];
+        //NSLog(@"count: %d", (int)[data count]);
+    }
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self.indicator stopAnimating];
+        self.addButton.enabled = YES;
+        [self.tableArticle reloadData];
+    });
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == ((NSIndexPath*)[[self.tableArticle indexPathsForVisibleRows] lastObject]).row) {
+        //[self.tableArticle reloadData];
+        [self.indicator stopAnimating];
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    //NSLog(@"%i", count);
+    return [data count];
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ArticleCell *cell = [self.tableArticle dequeueReusableCellWithIdentifier:@"articleCell" forIndexPath:indexPath];
+    cell.titleLabel.text = [[data objectAtIndex:indexPath.row] artTitle];
+    cell.descriptionLabel.text = [[data objectAtIndex:indexPath.row] artDescription];
+    cell.publishDateLabel.text = [[data objectAtIndex:indexPath.row] artPublishDate];
+    //cell.imageView.image = [UIImage imageNamed:[[[data objectForKey:@"RES_DATA"] objectAtIndex:indexPath.row] valueForKeyPath:@"image"]];
+    cell.imageView.image = [UIImage imageNamed:@"default.jpg"];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"detailArticleSegue" sender:[data objectAtIndex:indexPath.row]];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"detailArticleSegue"]) {
+        DetailArticleVC *detail = segue.destinationViewController;
+        detail.data = sender;
+    }
 }
-*/
 
+
+- (IBAction)openSearch:(id)sender {
+    [self performSegueWithIdentifier:@"searchSegue" sender:nil];
+}
+- (IBAction)addArticle:(id)sender {
+}
 @end

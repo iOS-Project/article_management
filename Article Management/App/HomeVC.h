@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeVC : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableArticle;
+- (IBAction)openSearch:(id)sender;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (weak, nonatomic) IBOutlet UIView *subView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
+
+- (IBAction)addArticle:(id)sender;
 
 @end
