@@ -43,17 +43,24 @@
     }
     
     // create dictionary to hold data
-    NSDictionary *article;
+    NSDictionary *article = [[NSDictionary alloc] initWithObjects:@[title, desc, @""] forKeys:@[@"title", @"description", @"image"]];
     
     // confirm user before save
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Are you sure want to save this article?" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *save = [UIAlertAction actionWithTitle:@"SAVE" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-       // add text to dictionary
-        NSLog(@"Save");
+        
+        // add text to dictionary
+        [cm requestData:article withKey:@"/api/article/hrd_c001"];
     }];
     
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"CANCEL" style:UIAlertActionStyleCancel handler:nil];
+    
     [alert addAction:save];
-    [self presentViewController:alert animated:YES completion:nil];
+    [alert addAction:cancel];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:alert animated:YES completion:nil];
+    });
+    
     
 }
 
@@ -67,16 +74,36 @@
     
     if ([string isEqualToString:@""]) {
         [self presentViewController:alert animated:YES completion:nil];
-        //return false;
-    }else{
-        return true;
+        return false;
     }
     
-    return false;
+    return true;
 }
 
 -(void)responseData:(NSDictionary *)dataDictionary{
+    if ([[dataDictionary objectForKey:@"MESSAGE"] isEqualToString:@"ARTICLE HAS BEEN INSERTED"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Message" message:@"Article has been inserted." preferredStyle:UIAlertControllerStyleAlert];
+        //UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            //[self dismissViewControllerAnimated:YES completion:nil];
+        //}];
+        
+        //[alert addAction:ok];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+        
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(dismissAlert) userInfo:nil repeats:NO];
     
+    }else{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Cannot add article." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+-(void)dismissAlert{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

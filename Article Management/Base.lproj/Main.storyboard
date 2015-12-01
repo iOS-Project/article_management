@@ -353,10 +353,10 @@
                                         <rect key="frame" x="0.0" y="69" width="328" height="501"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AI4-wQ-URn">
-                                                <rect key="frame" x="16" y="240" width="296" height="25"/>
+                                                <rect key="frame" x="16" y="240" width="296" height="253"/>
                                                 <animations/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="25" id="oxV-cr-EIM"/>
+                                                    <constraint firstAttribute="height" constant="253" id="oxV-cr-EIM"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -402,7 +402,7 @@
                                             <constraint firstItem="AI4-wQ-URn" firstAttribute="leading" secondItem="heL-Nb-ac6" secondAttribute="leading" id="WHn-8P-iKL"/>
                                             <constraint firstItem="Dm8-Uk-QqJ" firstAttribute="leading" secondItem="pQP-Bd-RQS" secondAttribute="leading" constant="16" id="Wc1-GI-Pqh"/>
                                             <constraint firstItem="heL-Nb-ac6" firstAttribute="top" secondItem="wAC-4J-9Ex" secondAttribute="bottom" constant="8" symbolic="YES" id="ZKE-ip-Cjn"/>
-                                            <constraint firstAttribute="bottom" secondItem="AI4-wQ-URn" secondAttribute="bottom" constant="236" id="abu-KE-AOh"/>
+                                            <constraint firstAttribute="bottom" secondItem="AI4-wQ-URn" secondAttribute="bottom" constant="8" id="abu-KE-AOh"/>
                                             <constraint firstItem="heL-Nb-ac6" firstAttribute="trailing" secondItem="wAC-4J-9Ex" secondAttribute="trailing" id="geS-9d-66b"/>
                                             <constraint firstItem="Dm8-Uk-QqJ" firstAttribute="top" secondItem="pQP-Bd-RQS" secondAttribute="topMargin" id="y81-ZD-b6u"/>
                                             <constraint firstItem="AI4-wQ-URn" firstAttribute="top" secondItem="heL-Nb-ac6" secondAttribute="bottom" constant="16" id="yID-l6-ZiO"/>
