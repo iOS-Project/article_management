@@ -38,7 +38,7 @@
     
     // hide add button
     self.addButton.enabled = false;
-    self.addButton.tintColor = [UIColor colorWithRed:(22/255.0) green:(144/255.0) blue:(127/255.0) alpha:1];
+    self.addButton.tintColor = [UIColor colorWithRed:(22/255.0) green:(144/255.0) blue:(67/255.0) alpha:1];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

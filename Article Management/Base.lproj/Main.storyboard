@@ -100,26 +100,32 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqg-KV-mIy">
                                                 <rect key="frame" x="8" y="8" width="312" height="483"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2do-cq-yVi">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2do-cq-yVi">
                                                         <rect key="frame" x="8" y="8" width="296" height="30"/>
                                                         <animations/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O1W-H0-zCa">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O1W-H0-zCa">
                                                         <rect key="frame" x="8" y="46" width="296" height="273"/>
                                                         <animations/>
                                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D9S-1J-uIP">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D9S-1J-uIP">
                                                         <rect key="frame" x="8" y="356" width="296" height="119"/>
                                                         <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="119" id="e25-WQ-j0X"/>
+                                                        </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Browse Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0L3-DQ-FHf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browse Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0L3-DQ-FHf">
                                                         <rect key="frame" x="8" y="327" width="296" height="21"/>
                                                         <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="BMI-qe-Iyh"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -127,6 +133,21 @@
                                                 </subviews>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="D9S-1J-uIP" firstAttribute="trailing" secondItem="cqg-KV-mIy" secondAttribute="trailingMargin" id="1wY-jN-yXZ"/>
+                                                    <constraint firstItem="O1W-H0-zCa" firstAttribute="leading" secondItem="2do-cq-yVi" secondAttribute="leading" id="3JY-oW-J0o"/>
+                                                    <constraint firstItem="O1W-H0-zCa" firstAttribute="trailing" secondItem="0L3-DQ-FHf" secondAttribute="trailing" id="6tw-fO-gzq"/>
+                                                    <constraint firstItem="0L3-DQ-FHf" firstAttribute="trailing" secondItem="D9S-1J-uIP" secondAttribute="trailing" id="7Yp-5u-hdr"/>
+                                                    <constraint firstItem="0L3-DQ-FHf" firstAttribute="top" secondItem="O1W-H0-zCa" secondAttribute="bottom" constant="8" symbolic="YES" id="BxX-5n-Bew"/>
+                                                    <constraint firstItem="D9S-1J-uIP" firstAttribute="bottom" secondItem="cqg-KV-mIy" secondAttribute="bottomMargin" id="J9I-rz-09u"/>
+                                                    <constraint firstItem="0L3-DQ-FHf" firstAttribute="leading" secondItem="O1W-H0-zCa" secondAttribute="leading" id="Toi-HM-i7J"/>
+                                                    <constraint firstItem="0L3-DQ-FHf" firstAttribute="leading" secondItem="cqg-KV-mIy" secondAttribute="leadingMargin" id="WT8-bg-Nz8"/>
+                                                    <constraint firstItem="2do-cq-yVi" firstAttribute="trailing" secondItem="O1W-H0-zCa" secondAttribute="trailing" id="Ygq-E9-lKQ"/>
+                                                    <constraint firstItem="2do-cq-yVi" firstAttribute="top" secondItem="cqg-KV-mIy" secondAttribute="topMargin" id="gDY-XV-Mu1"/>
+                                                    <constraint firstItem="O1W-H0-zCa" firstAttribute="top" secondItem="2do-cq-yVi" secondAttribute="bottom" constant="8" symbolic="YES" id="sim-o5-2pU"/>
+                                                    <constraint firstItem="D9S-1J-uIP" firstAttribute="leading" secondItem="0L3-DQ-FHf" secondAttribute="leading" id="tqg-fN-SVp"/>
+                                                    <constraint firstItem="D9S-1J-uIP" firstAttribute="top" secondItem="0L3-DQ-FHf" secondAttribute="bottom" constant="8" symbolic="YES" id="zKc-60-Vr9"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <animations/>
@@ -163,6 +184,7 @@
                             <constraint firstItem="XW0-XN-lFE" firstAttribute="top" secondItem="Tre-YR-ueR" secondAttribute="bottom" id="u7d-oG-avc"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="descriptionTV" destination="O1W-H0-zCa" id="K5Y-cl-pJT"/>
@@ -295,6 +317,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="home.png" selectedImage="home_selected.png" id="NSK-Pi-B89"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addButton" destination="Xoh-4c-OfL" id="OUy-ga-t4r"/>
@@ -435,6 +458,7 @@
                             <constraint firstItem="qC1-0N-qa3" firstAttribute="top" secondItem="uOq-hr-z46" secondAttribute="bottom" constant="49" id="rzv-YB-Le8"/>
                         </constraints>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="articleImage" destination="heL-Nb-ac6" id="tBC-K2-hOb"/>
@@ -569,6 +593,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wX9-kI-dia"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="headerView" destination="Vjd-rm-bpZ" id="WFc-OZ-tbJ"/>
