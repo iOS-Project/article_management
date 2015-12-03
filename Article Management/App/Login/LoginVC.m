@@ -55,8 +55,16 @@
         
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         [userDefault setObject:arrUser forKey:@"userLogin"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.loginIndicator stopAnimating];
+            // change set login button text to default
+            [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
+            // enable login button
+            self.loginButton.enabled = YES;
+            // go to home
+            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+        });
         
-        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
     }else{
         
         dispatch_async(dispatch_get_main_queue(), ^{

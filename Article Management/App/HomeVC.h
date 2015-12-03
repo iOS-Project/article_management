@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
 
 - (IBAction)addArticle:(id)sender;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
 @end
