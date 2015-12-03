@@ -15,6 +15,8 @@
 @interface HomeVC ()<ConnectionManagerDelegate, UITableViewDelegate, UITableViewDataSource>{
     NSMutableArray<Article *>*data;
     ConnectionManager *cm;
+    
+    UIRefreshControl *refreshControll;
 }
 
 @end
@@ -27,6 +29,11 @@
     // set delegate
     self.tableArticle.delegate = self;
     self.tableArticle.dataSource = self;
+    
+    // add refresh control
+    refreshControll = [[UIRefreshControl alloc] init];
+    [refreshControll addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableArticle addSubview:refreshControll];
     
     cm = [[ConnectionManager alloc] init];
     cm.delegate = self;
@@ -49,6 +56,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refresh:(UIRefreshControl*)refreshControl{
+    [self loadData];
 }
 
 -(void)loadData{
@@ -85,6 +96,7 @@
         self.addButton.enabled = YES;
         self.addButton.tintColor = [UIColor whiteColor];
         [self.tableArticle reloadData];
+        [refreshControll endRefreshing];
     });
 }
 

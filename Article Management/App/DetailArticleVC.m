@@ -11,6 +11,9 @@
 
 @interface DetailArticleVC ()<ConnectionManagerDelegate>{
     ConnectionManager *cm;
+    // toast
+    UIActivityIndicatorView *indicator;
+    UIView *view;
 }
 @end
 
@@ -40,20 +43,32 @@
     if ([message isEqualToString:@"ARTICLE HAS BEEN DELETED."]) {
         //NSLog(@"SUCCESS");
         
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            UIAlertController *success = [UIAlertController alertControllerWithTitle:@"Message" message:@"Article has been deleted." preferredStyle:UIAlertControllerStyleAlert];
-            [success addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                // go to home
-                //[self performSegueWithIdentifier:@"goHome" sender:nil];
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }]];
+//        dispatch_async(dispatch_get_main_queue(), ^(void){
+//            UIAlertController *success = [UIAlertController alertControllerWithTitle:@"Message" message:@"Article has been deleted." preferredStyle:UIAlertControllerStyleAlert];
+//            [success addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+//                // go to home
+//                //[self performSegueWithIdentifier:@"goHome" sender:nil];
+//                [self dismissViewControllerAnimated:YES completion:nil];
+//            }]];
+//            
+//            [self presentViewController:success animated:YES completion:nil];
+//        });
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Message" message:@"Article has been deleted." preferredStyle:UIAlertControllerStyleAlert];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //[self presentViewController:alert animated:YES completion:nil];
             
-            [self presentViewController:success animated:YES completion:nil];
+            [self presentViewController:alert animated:YES completion:^{
+                [view removeFromSuperview];
+                [self performSelector:@selector(dismissViewController) withObject:self afterDelay:1.0];
+            }];
+            
         });
         
     }
     
-    NSLog(@"MESSAGE: %@", message);
+    //NSLog(@"MESSAGE: %@", message);
 }
 
 /*
@@ -86,6 +101,9 @@
 
             NSDictionary *obj = [[NSDictionary alloc] initWithObjects:@[[self.data artID]] forKeys:@[@"id"]];
             
+            // display toast
+            [self addIndicator:indicator withMessage:@"Deleting..."];
+            
             [cm requestData:obj withKey:@"/api/article/hrd_d001"];
         }]];
         
@@ -106,5 +124,34 @@
     // present alert
     [self presentViewController:alert animated:YES completion:nil];
     
+}
+
+-(void)addIndicator:(UIActivityIndicatorView*)indicatorView withMessage:(NSString *)message{
+    //NSLog(@"add");
+    view = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, self.view.frame.size.width-100.0, 50.0)];
+    view.center = self.view.center;
+    view.backgroundColor = [UIColor colorWithRed:(22/255.0) green:(144/255.0) blue:(67/255.0) alpha:1];
+    view.layer.cornerRadius = view.frame.size.height/2;
+    // activity indicator
+    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    indicatorView.frame = CGRectMake(view.frame.origin.x+10.0, view.frame.size.height/2-15, 30.0, 30.0);
+    indicatorView.hidesWhenStopped = YES;
+    
+    [view addSubview:indicatorView];
+    
+    // add message
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(indicatorView.frame.origin.x + 40, indicatorView.frame.origin.y-5, view.frame.size.width-(indicatorView.frame.size.width + 10), 40.0)];
+    label.textColor = [UIColor whiteColor];
+    label.text = message;
+    [view addSubview:label];
+    
+    //[self.view addSubview:view];
+    [self.view addSubview:view];
+    [indicatorView startAnimating];
+}
+
+- (void)dismissViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

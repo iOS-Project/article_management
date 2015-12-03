@@ -112,8 +112,7 @@
             
             [self presentViewController:alert animated:YES completion:^{
                 [view removeFromSuperview];
-                [self performSelector:@selector(dismissViewController) withObject:self afterDelay:2.0];
-                //[self dismissViewControllerAnimated:YES completion:nil];
+                [self performSelector:@selector(dismissViewController) withObject:self afterDelay:1.0];
             }];
             
         });
@@ -159,10 +158,6 @@
 
 
 - (void)dismissViewController{
-    //if you are pushing your viewControler, then use below single line code
-    //[self.navigationController popViewControllerAnimated:YES];
-    //if you are presnting ViewController modally. then use below code
-    NSLog(@"dismiss");
     [self dismissViewControllerAnimated:YES completion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
