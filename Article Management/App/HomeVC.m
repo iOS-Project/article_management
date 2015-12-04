@@ -135,10 +135,8 @@
 -(void)responseData:(NSDictionary *)dataDictionary{
     
     if ([[dataDictionary objectForKey:@"MESSAGE"] isEqualToString:@"RECORD NOT FOUND"]) {
-        //NSLog(@"%@",  [dataDictionary objectForKey:@"MESSAGE"]);
         return;
     }else{
-    //NSLog(@"%i", (int)[[dataDictionary objectForKey:@"RES_DATA"] count]);
     // set total record
     totalRecord = (int)[dataDictionary objectForKey:@"TOTAL_REC"];
     // add data to object
@@ -208,14 +206,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ArticleCell *cell = [self.tableArticle dequeueReusableCellWithIdentifier:@"articleCell" forIndexPath:indexPath];
-    if ([[data objectAtIndex:indexPath.row] artTitle] != nil) {
-        cell.titleLabel.text = [[data objectAtIndex:indexPath.row] artTitle];
-    }else{
+    if ([[[data objectAtIndex:indexPath.row] artTitle] isKindOfClass:[NSNull class]]) {
         cell.titleLabel.text = @"";
+    }else{
+        cell.titleLabel.text = [[data objectAtIndex:indexPath.row] artTitle];
     }
     
-    cell.descriptionLabel.text = [[data objectAtIndex:indexPath.row] artDescription];
-    cell.publishDateLabel.text = [[data objectAtIndex:indexPath.row] artPublishDate];
+    if ([[[data objectAtIndex:indexPath.row] artDescription] isKindOfClass:[NSNull class]]) {
+        cell.descriptionLabel.text = @"";
+    }else{
+        cell.descriptionLabel.text = [[data objectAtIndex:indexPath.row] artDescription];
+    }
+    
+    if ([[[data objectAtIndex:indexPath.row] artPublishDate] isKindOfClass:[NSNull class]]) {
+        cell.publishDateLabel.text = @"";
+    }else{
+        cell.publishDateLabel.text = [[data objectAtIndex:indexPath.row] artPublishDate];
+    }
+
     
     if (data[indexPath.row].artImage) {
         // set the article image
@@ -226,8 +234,6 @@
         // download image in background
         [self downloadImageInBackground:data[indexPath.row] forIndexPath:indexPath];
     }
-    
-    //cell.imageView.image = [UIImage imageNamed:[[[data objectForKey:@"RES_DATA"] objectAtIndex:indexPath.row] valueForKeyPath:@"image"]];
     
     return cell;
 }
