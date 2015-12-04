@@ -135,16 +135,17 @@
 -(void)responseData:(NSDictionary *)dataDictionary{
     
     if ([[dataDictionary objectForKey:@"MESSAGE"] isEqualToString:@"RECORD NOT FOUND"]) {
+        //NSLog(@"%@",  [dataDictionary objectForKey:@"MESSAGE"]);
         return;
-    }
-    NSLog(@"%i", (int)[[dataDictionary objectForKey:@"RES_DATA"] count]);
+    }else{
+    //NSLog(@"%i", (int)[[dataDictionary objectForKey:@"RES_DATA"] count]);
     // set total record
     totalRecord = (int)[dataDictionary objectForKey:@"TOTAL_REC"];
     // add data to object
     for (NSArray *arr in [dataDictionary objectForKey:@"RES_DATA"]) {
         Article *article = [[Article alloc] initWithObject:arr];
         // add article to collection
-        [data insertObject:article atIndex:[data count]];
+        [data insertObject:article atIndex:0];
         //NSLog(@"%i", (int)[data count]);
     }
     
@@ -166,6 +167,7 @@
         [self.tableArticle reloadData];
         
     });
+    }
 }
 
 - (void)downloadImageInBackground:(Article *)article forIndexPath:(NSIndexPath *)indexPath {
@@ -200,15 +202,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //NSLog(@"%i", count);
     return [data count];
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ArticleCell *cell = [self.tableArticle dequeueReusableCellWithIdentifier:@"articleCell" forIndexPath:indexPath];
+    if ([[data objectAtIndex:indexPath.row] artTitle] != nil) {
+        cell.titleLabel.text = [[data objectAtIndex:indexPath.row] artTitle];
+    }else{
+        cell.titleLabel.text = @"";
+    }
     
-    cell.titleLabel.text = [[data objectAtIndex:indexPath.row] artTitle];
     cell.descriptionLabel.text = [[data objectAtIndex:indexPath.row] artDescription];
     cell.publishDateLabel.text = [[data objectAtIndex:indexPath.row] artPublishDate];
     
@@ -229,6 +234,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self performSegueWithIdentifier:@"detailArticleSegue" sender:[data objectAtIndex:indexPath.row]];
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    NSLog(@"%i", (int)[data count]);
 }
 
 #pragma mark - Navigation
