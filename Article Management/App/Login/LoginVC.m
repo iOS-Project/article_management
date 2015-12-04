@@ -12,6 +12,7 @@
 
 @interface LoginVC ()<ConnectionManagerDelegate>{
     ConnectionManager *cm;
+    NSUserDefaults *login;
 }
 
 @end
@@ -21,12 +22,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // check if user has been login so go to home screen directly
-    NSUserDefaults *login = [NSUserDefaults standardUserDefaults];
-    NSArray *arrUser = [login objectForKey:@"userLogin"];
-    if (![[arrUser valueForKey:@"username"] isEqualToString:@""]) {
-        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-    }
     
     // set padding for textField
     self.usernameTF.edgeInsets = UIEdgeInsetsMake(5, 20, 5, 10);
@@ -46,6 +41,17 @@
     cm.delegate = self;
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    //[self performSegueWithIdentifier:@"gotoSignUp" sender:nil];
+    // check if user has been login so go to home screen directly
+    login = [NSUserDefaults standardUserDefaults];
+    NSString *user = [[login objectForKey:@"userLogin"] objectForKey:@"username"];
+    
+    if (![user isEqualToString:@""] || user != nil){
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+    }
+}
+
 -(void)responseData:(NSDictionary *)dataDictionary{
     
     if ([[dataDictionary objectForKey:@"MESSAGE"] isEqualToString:@
@@ -53,8 +59,7 @@
         // set session of logined user
         NSArray *arrUser = [dataDictionary objectForKey:@"RES_DATA"];
         
-        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-        [userDefault setObject:arrUser forKey:@"userLogin"];
+        [login setObject:arrUser forKey:@"userLogin"];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.loginIndicator stopAnimating];
             // change set login button text to default

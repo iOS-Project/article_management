@@ -17,7 +17,7 @@
         self.artTitle = [array valueForKey:@"title"];
         self.artDescription = [array valueForKey:@"description"];
         self.artPublishDate = [array valueForKey:@"publishDate"];
-        self.artImageURL = [array valueForKey:@"image"];
+        self.artImageURL = [NSString stringWithFormat:@"http://hrdams.herokuapp.com/%@", [array valueForKey:@"image"]];
         self.userID = [array valueForKey:@"userId"];
         self.enable = [array valueForKey:@"enable"];
     }

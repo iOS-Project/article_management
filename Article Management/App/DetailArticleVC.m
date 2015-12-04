@@ -26,7 +26,7 @@
     self.titleLabel.text = [self.data artTitle];
     self.publishDate.text = [self.data artPublishDate];
     self.descriptionLabel.text = [self.data artDescription];
-    self.articleImage.image = [UIImage imageNamed:@"default.jpg"];
+    self.articleImage.image = [self.data artImage];
     
     cm = [[ConnectionManager alloc] init];
     cm.delegate = self;
@@ -41,18 +41,6 @@
 -(void)responseData:(NSDictionary *)dataDictionary{
     NSString *message = [dataDictionary valueForKeyPath:@"MESSAGE"];
     if ([message isEqualToString:@"ARTICLE HAS BEEN DELETED."]) {
-        //NSLog(@"SUCCESS");
-        
-//        dispatch_async(dispatch_get_main_queue(), ^(void){
-//            UIAlertController *success = [UIAlertController alertControllerWithTitle:@"Message" message:@"Article has been deleted." preferredStyle:UIAlertControllerStyleAlert];
-//            [success addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-//                // go to home
-//                //[self performSegueWithIdentifier:@"goHome" sender:nil];
-//                [self dismissViewControllerAnimated:YES completion:nil];
-//            }]];
-//            
-//            [self presentViewController:success animated:YES completion:nil];
-//        });
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Message" message:@"Article has been deleted." preferredStyle:UIAlertControllerStyleAlert];
         

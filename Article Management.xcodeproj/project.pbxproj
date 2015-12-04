@@ -188,22 +188,14 @@
 		D519F7A21C09B97800860DFC /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D5C91ED01C1179CF006BD6F8 /* Search */,
+				D5C91ECF1C1179C4006BD6F8 /* Home */,
+				D5C91ECE1C1179B3006BD6F8 /* Detail Article */,
+				D5C91ECD1C1179A7006BD6F8 /* Add Article */,
 				D5473C401C109C0D009E3013 /* Sign Up */,
 				D5473C351C107B2C009E3013 /* Login */,
-				D519F7A31C09C14B00860DFC /* ConnectionManager.h */,
-				D519F7A41C09C14B00860DFC /* ConnectionManager.m */,
-				D5BD7D1F1C09ED540049767D /* HomeVC.h */,
-				D5BD7D201C09ED540049767D /* HomeVC.m */,
-				D5BD7D221C09F30F0049767D /* ArticleCell.h */,
-				D5BD7D231C09F30F0049767D /* ArticleCell.m */,
-				D5D372D01C0ABA3600ECC5EE /* SearchArticleVC.h */,
-				D5D372D11C0ABA3600ECC5EE /* SearchArticleVC.m */,
 				D5C53B501C0B37BF001C14BA /* MoreVC.h */,
 				D5C53B511C0B37BF001C14BA /* MoreVC.m */,
-				D5C53B531C0B3F58001C14BA /* DetailArticleVC.h */,
-				D5C53B541C0B3F58001C14BA /* DetailArticleVC.m */,
-				D5E55E931C0D32370020A86A /* AddArticle.h */,
-				D5E55E941C0D32370020A86A /* AddArticle.m */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -224,6 +216,44 @@
 				D5473C421C109C42009E3013 /* SignUpVC.m */,
 			);
 			name = "Sign Up";
+			sourceTree = "<group>";
+		};
+		D5C91ECD1C1179A7006BD6F8 /* Add Article */ = {
+			isa = PBXGroup;
+			children = (
+				D5E55E931C0D32370020A86A /* AddArticle.h */,
+				D5E55E941C0D32370020A86A /* AddArticle.m */,
+			);
+			name = "Add Article";
+			sourceTree = "<group>";
+		};
+		D5C91ECE1C1179B3006BD6F8 /* Detail Article */ = {
+			isa = PBXGroup;
+			children = (
+				D5BD7D221C09F30F0049767D /* ArticleCell.h */,
+				D5BD7D231C09F30F0049767D /* ArticleCell.m */,
+				D5C53B531C0B3F58001C14BA /* DetailArticleVC.h */,
+				D5C53B541C0B3F58001C14BA /* DetailArticleVC.m */,
+			);
+			name = "Detail Article";
+			sourceTree = "<group>";
+		};
+		D5C91ECF1C1179C4006BD6F8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D5BD7D1F1C09ED540049767D /* HomeVC.h */,
+				D5BD7D201C09ED540049767D /* HomeVC.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		D5C91ED01C1179CF006BD6F8 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D5D372D01C0ABA3600ECC5EE /* SearchArticleVC.h */,
+				D5D372D11C0ABA3600ECC5EE /* SearchArticleVC.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		D5CB7B951C088899009885DD = {
@@ -289,6 +319,8 @@
 		D5E55E961C0D349B0020A86A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D519F7A31C09C14B00860DFC /* ConnectionManager.h */,
+				D519F7A41C09C14B00860DFC /* ConnectionManager.m */,
 				D5E55E971C0D35650020A86A /* LSTString.h */,
 				D5E55E981C0D35650020A86A /* LSTString.m */,
 				D5A3C1161C0E8CC900E490D8 /* LSTToast.h */,

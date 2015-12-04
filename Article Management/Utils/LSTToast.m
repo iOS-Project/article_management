@@ -9,7 +9,7 @@
 #import "LSTToast.h"
 
 @implementation LSTToast
--(void)showToast:(UIView *)target withMessage:(NSString *)message{
+-(void)showToast:(UIView*)target withMessage:(NSString *)message{
     NSLog(@"add");
     self.toastView = [[UIView alloc] initWithFrame:CGRectMake(target.frame.size.width/2, target.frame.size.height/2, target.frame.size.width-100.0, 50.0)];
     self.toastView.center = target.center;

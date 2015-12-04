@@ -34,6 +34,8 @@
     //indicator.hidesWhenStopped = YES;
     
     toast = [[LSTToast alloc] init];
+    
+    //[toast showToast:self.view withMessage:@"adding"];
 }
 
 - (IBAction)cancelAction:(id)sender {
