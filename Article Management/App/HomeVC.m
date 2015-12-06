@@ -12,6 +12,10 @@
 #import "DetailArticleVC.h"
 #import "Article.h"
 
+// activity indicator
+#define showIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
+#define hideIndicator() [UIApplication sharedApplication].networkActivityIndicatorVisible = NO
+
 @interface HomeVC ()<ConnectionManagerDelegate, UITableViewDelegate, UITableViewDataSource>{
     NSMutableArray<Article *>*data;
     ConnectionManager *cm;
@@ -124,6 +128,9 @@
  * load data from server
  */
 -(void)loadData{
+    
+    showIndicator();
+    
     NSDictionary *reqData = [[NSDictionary alloc] initWithObjects:@[[NSString stringWithFormat:@"%d", row], [NSString stringWithFormat:@"%d", currentPage]] forKeys:@[@"row", @"pageCount"]];
     [cm requestData:reqData withKey:@"/api/article/hrd_r001"];
     
@@ -144,7 +151,6 @@
         Article *article = [[Article alloc] initWithObject:arr];
         // add article to collection
         [data insertObject:article atIndex:0];
-        //NSLog(@"%i", (int)[data count]);
     }
     
     // if no record return
@@ -159,6 +165,8 @@
     
     dispatch_async(dispatch_get_main_queue(), ^(void){
         [self.indicator stopAnimating];
+        hideIndicator()
+        ;
         self.addButton.enabled = YES;
         self.addButton.tintColor = [UIColor whiteColor];
         [refreshControll endRefreshing];
@@ -243,7 +251,7 @@
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSLog(@"%i", (int)[data count]);
+    //NSLog(@"%i", (int)[data count]);
 }
 
 #pragma mark - Navigation
@@ -296,7 +304,7 @@
         [self addIndicator:processIndicator withMessage:@"Logging Out..."];
         dispatch_async(dispatch_get_main_queue(), ^{
             // clear session
-            [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"userLogin"];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userLogin"];
             [self performSelector:@selector(dismissViewcontroller) withObject:self afterDelay:2.0];
         });
         

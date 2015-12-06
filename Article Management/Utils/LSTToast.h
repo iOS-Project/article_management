@@ -9,10 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface LSTToast : NSObject
+@protocol LSToastDelegate;
 
-@property(strong, nonatomic)UIView* toastView;
-@property(strong, nonatomic)UIActivityIndicatorView* toastIndicatorView;
+@protocol LSToastDelegate <NSObject>
+
+@end
+
+@interface LSTToast : UIView<NSObject>
+
+@property(strong, nonatomic)id<LSToastDelegate>delegate;
 
 -(void)showToast:(UIView*)target withMessage:(NSString*)message;
+
 @end

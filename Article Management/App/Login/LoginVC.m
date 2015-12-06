@@ -9,6 +9,7 @@
 #import "LoginVC.h"
 #import "ConnectionManager.h"
 #import "User.h"
+#import "UIView+Toast.h"
 
 @interface LoginVC ()<ConnectionManagerDelegate>{
     ConnectionManager *cm;
@@ -39,15 +40,15 @@
     cm = [[ConnectionManager alloc] init];
     // set delegate
     cm.delegate = self;
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    //[self performSegueWithIdentifier:@"gotoSignUp" sender:nil];
     // check if user has been login so go to home screen directly
     login = [NSUserDefaults standardUserDefaults];
     NSString *user = [[login objectForKey:@"userLogin"] objectForKey:@"username"];
     
-    if (![user isEqualToString:@""] || user != nil){
+    if (user != nil){
         [self performSegueWithIdentifier:@"loginSegue" sender:nil];
     }
 }

@@ -7,8 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "Reachability.h"
+#import "UIView+Toast.h"
+#import "LoginVC.h"
+#define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
-@interface AppDelegate ()
+@interface AppDelegate (){
+
+}
 
 @end
 
@@ -16,8 +22,42 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    // Allocate a reachability object
+    Reachability* reach = [Reachability reachabilityWithHostname:@"http://hrdams.herokuapp.com"];
+    dispatch_queue_t background_queue = dispatch_queue_create("com.khmerdev.article_management", 0);
+    // Set the blocks
+//    reach.reachableBlock = ^(Reachability*reach)
+//    {
+//        // keep in mind this is called on a background thread
+//        // and if you are updating the UI it needs to happen
+//        // on the main thread, like this:
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSLog(@"reach");
+//            
+//        });
+//    };
+    
+    dispatch_async(background_queue, ^{
+        reach.unreachableBlock = ^(Reachability*reach)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"unreach");
+                //[ROOTVIEW presentViewController:rootView animated:YES completion:nil];
+                [[UIApplication sharedApplication].keyWindow.rootViewController.view makeToast:@"No Internet Connection" duration:5.0 position:CSToastPositionBottom];
+                
+                
+            });
+        };
+    });
+    
+    
+    
+    // Start the notifier, which will cause the reachability object to retain itself!
+    [reach startNotifier];
+    
     return YES;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

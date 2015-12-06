@@ -13,5 +13,10 @@
 - (IBAction)saveAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *titleTF;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTV;
+@property (weak, nonatomic) IBOutlet UIImageView *articleImage;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonCancel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *buttonSave;
+
+- (IBAction)browseImage:(id)sender;
 
 @end

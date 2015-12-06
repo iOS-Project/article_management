@@ -8,16 +8,19 @@
 
 #import "AddArticle.h"
 #import "ConnectionManager.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "LSTToast.h"
 
-@interface AddArticle()<ConnectionManagerDelegate>{
+@interface AddArticle()<ConnectionManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     ConnectionManager *cm;
     
     // toast
     UIActivityIndicatorView *indicator;
     UIView *view;
     
-    LSTToast *toast;
+    UIImagePickerController *imagePicker;
+    
+    NSMutableDictionary *article;
 }
 
 @end
@@ -30,12 +33,17 @@
     cm = [[ConnectionManager alloc] init];
     cm.delegate = self;
     
+    // initialize image picker
+    imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    
     //indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     //indicator.hidesWhenStopped = YES;
     
-    toast = [[LSTToast alloc] init];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
     
-    //[toast showToast:self.view withMessage:@"adding"];
 }
 
 - (IBAction)cancelAction:(id)sender {
@@ -57,7 +65,7 @@
     }
     
     // create dictionary to hold data
-    NSDictionary *article = [[NSDictionary alloc] initWithObjects:@[title, desc, @""] forKeys:@[@"title", @"description", @"image"]];
+    article = [[NSMutableDictionary alloc] initWithObjects:@[title, desc] forKeys:@[@"title", @"description"]];
     
     // confirm user before save
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Are you sure want to save this article?" preferredStyle:UIAlertControllerStyleAlert];
@@ -65,10 +73,16 @@
         
         // add indicator
         [self addIndicator:indicator withMessage:@"Saving..."];
-        //[toast showToast:self.view withMessage:@"Saving..."];
+        
+        // disable cance and save button
+        self.buttonCancel.enabled = false;
+        self.buttonSave.enabled = false;
+        
+        // upload image first
+        [cm uploadImage:self.articleImage.image withKey:@"/api/article/upload_image"];
         
         // add text to dictionary
-        [cm requestData:article withKey:@"/api/article/hrd_c001"];
+        //[cm requestData:article withKey:@"/api/article/hrd_c001"];
         
         // hide keyboard
         [self.titleTF resignFirstResponder];
@@ -105,6 +119,7 @@
     return true;
 }
 
+#pragma mark - response data
 -(void)responseData:(NSDictionary *)dataDictionary{
     if ([[dataDictionary objectForKey:@"MESSAGE"] isEqualToString:@"ARTICLE HAS BEEN INSERTED"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Message" message:@"Article has been inserted." preferredStyle:UIAlertControllerStyleAlert];
@@ -127,6 +142,20 @@
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+/*
+ * Response when image upload successful
+ */
+-(void)responseImage:(NSDictionary *)dataDictionary{
+    NSLog(@"%@", dataDictionary);
+    // if image has been upload then upload article
+    if ([[dataDictionary objectForKey:@"MESSAGE"] isEqualToString:@"IMAGE HAS BEEN INSERTED"]) {
+        NSLog(@"upload complete");
+        // insert image to dictionary
+        [article setObject:[NSString stringWithFormat:@"%@/%@", cm.basedUrl, [dataDictionary objectForKey:@"ART_IMG"]] forKey:@"image"];
+        [cm requestData:article withKey:@"/api/article/hrd_c001"];
     }
 }
 
@@ -162,5 +191,39 @@
 - (void)dismissViewController{
     [self dismissViewControllerAnimated:YES completion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - browse image
+- (IBAction)browseImage:(id)sender {
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+- (void) imagePickerController: (UIImagePickerController *) picker
+ didFinishPickingMediaWithInfo: (NSDictionary *) info {
+    
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    UIImage *originalImage, *editedImage, *imageToUse;
+    
+    // Handle a still image picked from a photo album
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
+        == kCFCompareEqualTo) {
+        
+        editedImage = (UIImage *) [info objectForKey:
+                                   UIImagePickerControllerEditedImage];
+        originalImage = (UIImage *) [info objectForKey:
+                                     UIImagePickerControllerOriginalImage];
+        
+        if (editedImage) {
+            imageToUse = editedImage;
+        } else {
+            imageToUse = originalImage;
+        }
+        // Do something with imageToUse
+        self.articleImage.image = imageToUse;
+        
+    }
+    //[[picker parentViewController] dismissModalViewControllerAnimated: YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 @end

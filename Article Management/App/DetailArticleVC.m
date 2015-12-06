@@ -23,9 +23,24 @@
     [super viewDidLoad];
     
     // set data
-    self.titleLabel.text = [self.data artTitle];
-    self.publishDate.text = [self.data artPublishDate];
-    self.descriptionLabel.text = [self.data artDescription];
+    if ([[self.data artTitle] isKindOfClass:[NSNull class]]) {
+        self.titleLabel.text = @"";
+    }else{
+        self.titleLabel.text = [self.data artTitle];
+    }
+    
+    if ([[self.data artPublishDate] isKindOfClass:[NSNull class]]) {
+        self.publishDate.text = @"";
+    }else{
+        self.publishDate.text = [self.data artPublishDate];
+    }
+    
+    if ([[self.data artDescription] isKindOfClass:[NSNull class]]) {
+        self.descriptionLabel.text = @"";
+    }else{
+        self.descriptionLabel.text = [self.data artDescription];
+    }
+    
     self.articleImage.image = [self.data artImage];
     
     cm = [[ConnectionManager alloc] init];
